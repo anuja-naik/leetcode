@@ -6,7 +6,7 @@ class Solution {
             for(int j=i; j<nums.length; j++){
                 prod *= nums[j];
 
-                if(prod > maxProd && prod >= 0){
+                if(prod > maxProd){
                     maxProd = prod;
                 }
             }
