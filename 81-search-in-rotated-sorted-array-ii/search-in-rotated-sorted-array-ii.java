@@ -2,22 +2,20 @@ class Solution {
     public boolean search(int[] nums, int target) {
         int low = 0;
         int high = nums.length-1;
-        boolean found = false;
-
         while(low <= high){
-            int mid = low + (high - low) / 2;
+            int mid = low + (high-low)/2;
             if(nums[mid] == target){
-               return true;
+                return true;
             }
-            // Duplicates skip
+            // Duplicates
             if(nums[low] == nums[mid] && nums[mid] == nums[high]){
                 low ++;
                 high --;
                 continue;
             }
-            // Left sorted
+            // Left is sorted
             if(nums[low] <= nums[mid]){
-                if(target >= nums[low] && target < nums[mid]){
+                if(target < nums[mid] &&  target >= nums[low]){
                     high = mid - 1;
                 }
                 else{
@@ -25,7 +23,7 @@ class Solution {
                 }
             }
 
-            // Right sorted
+            // Right is sorted
             else{
                 if(target > nums[mid] && target <= nums[high]){
                     low = mid + 1;
