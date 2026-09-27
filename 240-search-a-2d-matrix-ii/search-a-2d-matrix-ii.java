@@ -10,11 +10,11 @@ class Solution {
                 if(matrix[i][mid] == target){
                     return true;
                 }
-                else if(target < matrix[i][mid]){
-                    high = mid - 1;
+                if(target > matrix[i][mid]){
+                    low = mid + 1;
                 }
                 else{
-                    low = mid + 1;
+                    high = mid - 1;
                 }
             }
         }
