@@ -1,28 +1,28 @@
 class Solution {
     public int trap(int[] height) {
         int n = height.length;
-        // Compute max left boundry
-        int leftMax [] = new int[n];
-        leftMax[0] = height[0];
+        // 1. maxLeft Boundry
+        int maxLeft[] = new int[n];
+        maxLeft[0] = height[0];
         for(int i=1; i<n; i++){
-            leftMax[i] = Math.max(height[i], leftMax[i-1]);
+            maxLeft[i] = Math.max(height[i], maxLeft[i-1]);
         }
 
-        // Compute max right boundry
-        int rightMax [] = new int[n];
-        rightMax[n-1] = height[n-1];
-        for(int i = n-2; i>= 0; i--){
-            rightMax[i] = Math.max(height[i], rightMax[i+1]);
+        // 2. maxRight Boundry
+        int maxRight[] = new int[n];
+        maxRight[n-1] = height[n-1];
+        for(int i=n-2; i>=0; i--){
+            maxRight[i] = Math.max(height[i], maxRight[i+1]);
         }
 
-        /* Loop to find: 
-        1. min(maxLeftBoundry, maxRightBoundry)
-        2. Trapped water = (waterlevel - height) * width */
+        /* 3. Loop :
+            a. min of maxLeft, maxRight
+            b. trappedWater = (waterLevel - height) * width */
+
         int trappedWater = 0;
-        int width = 1;
         for(int i=0; i<n; i++){
-            int waterLevel = Math.min(leftMax[i], rightMax[i]);
-            trappedWater += (waterLevel - height[i]) * width;
+            int waterLevel = Math.min(maxLeft[i], maxRight[i]);
+            trappedWater += waterLevel - height[i];
         }
         return trappedWater;
     }
