@@ -1,23 +1,23 @@
 class Solution {
     public String capitalizeTitle(String title) {
+        
         String[] words = title.toLowerCase().split(" ");
-        String ans = "";
+        String result = "";
 
-        for (String word : words) {
-            if (word.length() > 2) {
-                for (int i = 0; i < word.length(); i++) {
-                    if (i == 0)
-                        ans += Character.toUpperCase(word.charAt(i));
-                    else
-                        ans += word.charAt(i);
-                }
-            } else {
-                ans += word;
+        for (int i = 0; i < words.length; i++) {
+            
+            if (words[i].length() > 2) {
+                words[i] = Character.toUpperCase(words[i].charAt(0))
+                        + words[i].substring(1);
             }
 
-            ans += " ";
+            result += words[i];
+
+            if (i < words.length - 1) {
+                result += " ";
+            }
         }
 
-        return ans.trim();
+        return result;
     }
 }
