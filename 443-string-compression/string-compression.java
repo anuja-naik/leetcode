@@ -1,7 +1,7 @@
 class Solution {
     public int compress(char[] chars) {
         String result = "";
-        for(int i=0; i< chars.length; i++){
+        for(int i=0; i<chars.length; i++){
             Integer count = 1;
             while(i < chars.length-1 && chars[i] == chars[i+1]){
                 count ++;
@@ -12,7 +12,6 @@ class Solution {
                 result += count.toString();
             }
         }
-        // Put each char of result in char arr back 
         for(int i=0; i<result.length(); i++){
             chars[i] = result.charAt(i);
         }
