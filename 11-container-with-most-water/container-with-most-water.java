@@ -1,17 +1,19 @@
 class Solution {
     public int maxArea(int[] height) {
+        int n = height.length;
         int left = 0;
-        int right = height.length-1;
+        int right = n-1;
         int maxArea = 0;
-        // int w = right - left;                               // dist between heights (indices)
-        // int h = Math.min(height[left], height[right]);    // max height causes overflow
-        // int area = w * h;
         while(left < right){
-            maxArea = Math.max(maxArea, (right - left) * (Math.min(height[left], height[right])));
+            int wd = right - left;
+            int ht = Math.min(height[left], height[right]);
+            int area = wd * ht;
+            if(area > maxArea){
+                maxArea = area;
+            }
             if(height[left] < height[right]){
                 left ++;
-            }
-            else{
+            }else{
                 right --;
             }
         }
